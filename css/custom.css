@@ -1,0 +1,27 @@
+.flex-container{
+    display: flex;
+    flex-wrap: wrap;
+    
+}
+.info-panel{
+  margin: 5px;
+  padding: 10px;
+  color: white;
+  background-color: #28a197;
+  flex: 1 1 0;
+}
+
+.add-button-panel{
+  font-size: 120px !important;
+  text-align: center;
+  order: 1000;
+}
+.button.delete {
+  margin: 10px 0px;
+  background-color: #d4351c;
+  color: white;
+}
+
+.add-user-panel > * {
+  color: black;
+}

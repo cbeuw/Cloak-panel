@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>Cloak panel</title>
+
+  <!-- Templates -->
+  <script id="info-panel-template" type="text/x-handlebars-template">
+    <div class="info-panel" id="info-panel-{{UID}}">
+        <h5>{{UID}}</h5>
+      <div class="body">
+        Sessions cap: {{SessionsCap}}<br>
+        Upload bandwidth: {{UpRate}}<br>
+        Download bandwidth: {{DownRate}}<br>
+        Upload credit: {{UpCredit}}<br>
+        Download credit: {{DownCredit}}<br>
+        User expiry: {{ExpiryTime}}<br>
+      </div>
+      <input type="button" class="button delete" value="delete" onclick="deleteUser('{{UID}}')">
+    </div>
+  </script>
+
+  <script id="info-panel-add-button-template" type="text/x-handlebars-template">
+    <div class="info-panel add-button-panel" onclick="showAddUser()">
+      +
+    </div>
+  </script>
+
+  <script id="info-panel-add-user-template" type="text/x-handlebars-template">
+    <div class="info-panel add-user-panel">
+        <input class="u-full-width" id="UIDInput" placeholder="UID">
+        <input class="u-full-width" id="SessionsCapInput" placeholder="Sessions cap">
+        <input class="u-full-width" id="UpRateInput" placeholder="Upload bandwidth">
+        <input class="u-full-width" id="DownRateInput" placeholder="Download bandwidth">
+        <input class="u-full-width" id="UpCreditInput" placeholder="Upload credit">
+        <input class="u-full-width" id="DownCreditInput" placeholder="Download credit">
+        <input class="u-full-width" id="ExpiryTimeInput" placeholder="User expiry">
+        <input class="button-primary" type="submit" value="Add" onclick="addUser()">
+    </div>
+</script>
+
+
+  <script src="script/handlebars.js"></script>
+  <script src="script/endpoint.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu:400,500&display=swap" rel="stylesheet">
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="css/custom.css">
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/skeleton.css">
+
+</head>
+
+<body>
+
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <div class="container">
+    <div class="row">
+      <div class="column" style="margin-top: 10%">
+        <h4>Cloak Server Control Panel</h4>
+      </div>
+    </div>
+    <div class="row">
+      <label for="baseUrl">API Base</label>
+    </div>
+    <div class="row">
+      <div class="nine columns">
+        <input class="u-full-width" type="url" value="127.0.0.1:8080" id="baseUrl">
+      </div>
+      <div class="three columns">
+        <input type="button" value="List" onclick="listAllUsers()">
+      </div>
+    </div>
+    <div class="column">
+      <div class="flex-container">
+      </div>
+    </div>
+  </div>
+
+  <!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+
+</html>
