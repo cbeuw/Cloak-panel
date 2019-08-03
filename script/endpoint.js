@@ -4,7 +4,7 @@ var setApiBase = function () {
   apiBase = $('#baseUrl').val();
 }
 
-var alertError = function (jqXHR, textStatus){
+var alertError = function (jqXHR, textStatus) {
   alert(textStatus + " " + jqXHR.responseText)
 }
 
@@ -18,13 +18,13 @@ var listAllUsers = function () {
   $.ajax({
     dataType: "json",
     url: endpoint,
-    success: function (data){
+    success: function (data) {
       $('.flex-container').empty();
-    $.each(data, function (key, json) {
-      var div = panelTemplate(json)
-      $('.flex-container').append(div);
-    });
-    $('.flex-container').append($("#info-panel-add-button-template").html())
+      $.each(data, function (_, uinfo) {
+        var div = panelTemplate(uinfo)
+        $('.flex-container').append(div);
+      });
+      $('.flex-container').append($("#info-panel-add-button-template").html())
     },
     error: alertError
   });
@@ -35,7 +35,7 @@ var deleteUser = function (UID) {
   if (r) _deleteUser(UID);
 }
 
-var base64URLencode = function(x) {
+var base64URLencode = function (x) {
   return x.replace(/\+/g, '-').replace(/\//g, '_')
 }
 
@@ -44,34 +44,34 @@ var _deleteUser = function (UID) {
   $.ajax({
     url: endpoint,
     type: 'DELETE',
-    success: function(){
-      $("#info-panel-"+$.escapeSelector(UID)).remove()
+    success: function () {
+      $("#info-panel-" + $.escapeSelector(UID)).remove()
     },
     error: alertError
   })
 }
 
-var generateUID = function(){
+var generateUID = function () {
   var array = new Uint8Array(16)
   window.crypto.getRandomValues(array)
-  bytes = String.fromCharCode.apply(null,array)
+  bytes = String.fromCharCode.apply(null, array)
   return btoa(bytes)
 }
 
-var showAddUser = function() {
+var showAddUser = function () {
   $(".add-button-panel").replaceWith($("#info-panel-add-user-template").html())
   $("#UIDInput").val(generateUID())
 }
 
-var addUser = function(){
+var addUser = function () {
   var userinfo = new Object()
   userinfo.UID = $("#UIDInput").val()
   userinfo.SessionsCap = parseInt($('#SessionsCapInput').val())
-  userinfo.UpRate = parseInt($('#UpRateInput').val())
-  userinfo.DownRate = parseInt($('#DownRateInput').val())
-  userinfo.UpCredit = parseInt($('#UpCreditInput').val())
-  userinfo.DownCredit = parseInt($('#DownCreditInput').val())
-  userinfo.ExpiryTime = parseInt($('#ExpiryTimeInput').val())
+  userinfo.UpRate = parseInt($('#UpRateInput').val()) * 1048576
+  userinfo.DownRate = parseInt($('#DownRateInput').val()) * 1048576
+  userinfo.UpCredit = parseInt($('#UpCreditInput').val()) * 1048576
+  userinfo.DownCredit = parseInt($('#DownCreditInput').val()) * 1048576
+  userinfo.ExpiryTime = parseInt($('#ExpiryTimeInput').val()) * 1048576
 
   var postVar = new Object()
   postVar.UserInfo = JSON.stringify(userinfo)
@@ -82,7 +82,7 @@ var addUser = function(){
     url: endpoint,
     type: 'POST',
     data: postVar,
-    success: function(){
+    success: function () {
       listAllUsers()
       $(".add-user-panel").replaceWith($("#info-panel-add-button-template").html())
     },

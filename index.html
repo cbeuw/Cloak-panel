@@ -14,10 +14,10 @@
         <h5>{{UID}}</h5>
       <div class="body">
         Sessions cap: {{SessionsCap}}<br>
-        Upload bandwidth: {{UpRate}}<br>
-        Download bandwidth: {{DownRate}}<br>
-        Upload credit: {{UpCredit}}<br>
-        Download credit: {{DownCredit}}<br>
+        Upload bandwidth: {{UpRate}} bytes/s<br>
+        Download bandwidth: {{DownRate}} bytes/s<br>
+        Upload credit: {{UpCredit}} bytes<br>
+        Download credit: {{DownCredit}} bytes<br>
         User expiry: {{ExpiryTime}}<br>
       </div>
       <input type="button" class="button delete" value="delete" onclick="deleteUser('{{UID}}')">
@@ -34,11 +34,11 @@
     <div class="info-panel add-user-panel">
         <input class="u-full-width" id="UIDInput" placeholder="UID">
         <input class="u-full-width" id="SessionsCapInput" placeholder="Sessions cap">
-        <input class="u-full-width" id="UpRateInput" placeholder="Upload bandwidth">
-        <input class="u-full-width" id="DownRateInput" placeholder="Download bandwidth">
-        <input class="u-full-width" id="UpCreditInput" placeholder="Upload credit">
-        <input class="u-full-width" id="DownCreditInput" placeholder="Download credit">
-        <input class="u-full-width" id="ExpiryTimeInput" placeholder="User expiry">
+        <input class="u-full-width" id="UpRateInput" placeholder="Upload bandwidth (MiBytes/s)">
+        <input class="u-full-width" id="DownRateInput" placeholder="Download bandwidth (MiBytes/s)">
+        <input class="u-full-width" id="UpCreditInput" placeholder="Upload credit (MiB)">
+        <input class="u-full-width" id="DownCreditInput" placeholder="Download credit (MiB)">
+        <input class="u-full-width" id="ExpiryTimeInput" placeholder="User expiry (Unix timestamp)">
         <input class="button-primary" type="submit" value="Add" onclick="addUser()">
     </div>
 </script>
