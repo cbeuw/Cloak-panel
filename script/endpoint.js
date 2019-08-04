@@ -71,7 +71,7 @@ var addUser = function () {
   userinfo.DownRate = parseInt($('#DownRateInput').val()) * 1048576
   userinfo.UpCredit = parseInt($('#UpCreditInput').val()) * 1048576
   userinfo.DownCredit = parseInt($('#DownCreditInput').val()) * 1048576
-  userinfo.ExpiryTime = parseInt($('#ExpiryTimeInput').val()) * 1048576
+  userinfo.ExpiryTime = parseInt($('#ExpiryTimeInput').val())
 
   var postVar = new Object()
   postVar.UserInfo = JSON.stringify(userinfo)
