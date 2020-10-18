@@ -73,15 +73,12 @@ var addUser = function () {
   userinfo.DownCredit = parseInt($('#DownCreditInput').val()) * 1048576
   userinfo.ExpiryTime = parseInt($('#ExpiryTimeInput').val())
 
-  var postVar = new Object()
-  postVar.UserInfo = JSON.stringify(userinfo)
-
   var endpoint = "http://" + apiBase + "/admin/users/" + base64URLencode(userinfo.UID);
 
   $.ajax({
     url: endpoint,
     type: 'POST',
-    data: postVar,
+    data: JSON.stringify(userinfo),
     success: function () {
       listAllUsers()
       $(".add-user-panel").replaceWith($("#info-panel-add-button-template").html())
