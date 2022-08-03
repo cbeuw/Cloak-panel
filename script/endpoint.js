@@ -1,14 +1,14 @@
 var apiBase;
 
-var setApiBase = function () {
+function setApiBase() {
   apiBase = $('#baseUrl').val();
 }
 
-var alertError = function (jqXHR, textStatus) {
+function alertError(jqXHR, textStatus) {
   alert(textStatus + " " + jqXHR.responseText)
 }
 
-var listAllUsers = function () {
+function listAllUsers() {
   setApiBase()
 
   var endpoint = "http://" + apiBase + "/admin/users";
@@ -30,16 +30,16 @@ var listAllUsers = function () {
   });
 }
 
-var deleteUser = function (UID) {
+function deleteUser(UID) {
   var r = confirm("Do you really want to delete " + UID + "?")
   if (r) _deleteUser(UID);
 }
 
-var base64URLencode = function (x) {
+function base64URLencode(x) {
   return x.replace(/\+/g, '-').replace(/\//g, '_')
 }
 
-var _deleteUser = function (UID) {
+function _deleteUser(UID) {
   var endpoint = "http://" + apiBase + "/admin/users/" + base64URLencode(UID);
   $.ajax({
     url: endpoint,
@@ -51,19 +51,19 @@ var _deleteUser = function (UID) {
   })
 }
 
-var generateUID = function () {
+function generateUID() {
   var array = new Uint8Array(16)
   window.crypto.getRandomValues(array)
   bytes = String.fromCharCode.apply(null, array)
   return btoa(bytes)
 }
 
-var showAddUser = function () {
+function showAddUser() {
   $(".add-button-panel").replaceWith($("#info-panel-add-user-template").html())
   $("#UIDInput").val(generateUID())
 }
 
-var addUser = function () {
+function addUser() {
   var userinfo = new Object()
   userinfo.UID = $("#UIDInput").val()
   userinfo.SessionsCap = parseInt($('#SessionsCapInput').val())
